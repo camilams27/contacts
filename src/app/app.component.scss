@@ -1,0 +1,38 @@
+header {
+    #logo {
+        height: 2.5rem;
+    }
+
+    #btnCreate {
+        outline: none;
+        border: none;
+        border-bottom: 1px solid purple;
+        padding: .5rem;
+        background-color: rgba(86, 33, 155, 0.781);
+        border-radius: 10px 0px;
+    }
+
+    #btnCreate:hover{
+        background-color: rgb(75, 22, 75);
+        border-radius: 10px 0px;
+        transition: 1s;
+    }
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif, 'Noto Sans JP', sans-serif;
+}
+
+div {
+    #navigate {
+        min-height: 100vh;
+        min-width: 15vw;
+        max-width: 20vw;
+        background-color: rgb(194, 228, 228);
+        box-shadow: 10px 0px 8px rgb(194, 228, 228);
+    }
+    
+    #container {
+        height: 70%;
+    }
+}

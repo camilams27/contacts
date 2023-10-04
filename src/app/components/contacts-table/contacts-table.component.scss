@@ -1,0 +1,57 @@
+section {
+    table {
+        width: 100%;
+        box-shadow: 0px 0px 10px #aaa8a8;
+
+        tr > td:nth-child(1),
+        tr > td:nth-child(2),
+        tr > td:nth-child(3) {
+            width: 30%;
+        }
+
+        .atention td{
+            color: rgb(94, 94, 94);
+            text-decoration: line-through;
+        }
+
+        .restore {
+            background-color: green;
+        }
+
+        .inactive {
+            background-color: rgb(151, 34, 19);
+        }
+
+       
+        .settings {
+            gap: .5em;
+            
+            button {
+                outline: none;
+                border: none;
+            }
+
+            button:hover {
+                opacity: 1;
+                transition: 2s;
+            }
+
+            #favorite {
+                background-color: rgb(214, 214, 43);
+            }
+
+            #detail {
+                background-color: rgb(51, 126, 196);
+            }
+
+            #edit {
+                background-color: rgb(219, 130, 47);
+            }
+
+            #disable {
+                background-color: rgb(173, 43, 43);
+            }
+        }  
+    }
+}
+

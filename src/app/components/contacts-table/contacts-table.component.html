@@ -1,0 +1,72 @@
+<section class="mb-2">
+    <table class="table table-striped m-1">
+        <thead>
+            <tr>
+                <th scope="col" *ngFor="let header of displayedColumns">{{header}}</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let contact of dataSource; index as i" [ngClass]="{'atention': !contact.isActive}">
+                <td>
+                    <mat-icon *ngIf="!contact.isActive" class="atention">warning</mat-icon>
+                    {{ contact.contactName }}
+                </td>
+                <td>{{ contact.contactPhone }}</td>
+                <td>{{ contact.contactEmail }}</td>
+                <td class="d-flex settings"> 
+                    <button
+                        mat-icon-button
+                        id="favorite"
+                        class="btn-contacts"
+                        (click)="favoriteContact(contact)"
+                        >
+                            <mat-icon 
+                                class="favIcon"
+                                placement="top" 
+                                [ngbTooltip]="!contact.isFavorite ? 'Favoritar' : 'Desfavoritar'"
+                                >
+                                {{ contact.isFavorite ? 'star' : 'star_border' }}
+                            </mat-icon>
+                    </button>
+               
+                    <button 
+                        mat-icon-button
+                        class="btn-contacts btnIcons"
+                        id="detail"
+                        (click)="viewContact(contact)"
+                        placement="top" 
+                        ngbTooltip="Detalhes">
+                        <mat-icon>info</mat-icon>
+                    </button>
+                
+                    <button 
+                        mat-icon-button
+                        class="btn-contacts"
+                        id="edit"
+                        (click)="editContact(contact)"
+                        placement="top" 
+                        ngbTooltip="Editar">
+                            <mat-icon>edit</mat-icon>
+                    </button>
+                
+                    <button
+                        mat-icon-button
+                        class="btn-contacts"
+                        [ngClass]="{'restore': !contact.isActive, 'inactive': contact.isActive}"
+                        [ngbTooltip]="!contact.isActive ? 'Ativar' : 'Desativar'"
+                        >
+                            <mat-icon *ngIf="contact.isActive"
+                            (click)="statusContact(contact, 'inactive')">
+                                delete_forever
+                            </mat-icon>
+                            
+                            <mat-icon *ngIf="!contact.isActive"
+                            (click)="statusContact(contact, 'active')">
+                                history
+                            </mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

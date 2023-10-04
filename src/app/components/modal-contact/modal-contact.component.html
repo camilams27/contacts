@@ -1,0 +1,144 @@
+<div class="modal-header">
+    <h4 class="modal-title m-0 d-flex align-items-center">
+        <strong>{{ title }}</strong>
+        <span *ngIf="contact">
+            <mat-icon *ngIf="!contact.isActive" class="atention">warning</mat-icon>
+        </span>
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <!-- criar -->
+    <section *ngIf="title === 'Criar Contato'">
+        <form class="mb-3 d-flex flex-column" [formGroup]="createContactForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="mb-2">
+                <mat-label>Nome:</mat-label>
+                <input matInput placeholder="Exemplo" formControlName="name" required>
+                <mat-error *ngIf="createContactForm.get('name')?.invalid">
+                    {{getErrorMessage('name')}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="mb-2">
+                <mat-label>Email:</mat-label>
+                <input matInput placeholder="nome@examplo.com" formControlName="email" required>
+                <mat-error *ngIf="createContactForm.get('email')?.invalid">
+                    {{getErrorMessage('email')}}
+                </mat-error>
+            </mat-form-field>
+
+        
+            <mat-form-field class="mb-2">
+                <mat-label>Celular:</mat-label>
+                <input matInput placeholder="81 99999-9999" formControlName="cell" required>
+                <mat-error *ngIf="createContactForm.get('cell')?.invalid">
+                    {{getErrorMessage('cell')}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="mb-2">
+                <mat-label>Telefone:</mat-label>
+                <input matInput placeholder="81 99999-9999" formControlName="telephone" required>
+                <mat-error *ngIf="createContactForm.get('telephone')?.invalid">
+                    {{getErrorMessage('telephone')}}
+                </mat-error>
+            </mat-form-field>
+
+            <div class="d-flex align-items-center">
+                <label for="favorite">Favorito:</label>
+                <input type="checkbox" id="favorite" name="favorite" formControlName="favorite">
+            </div>
+        
+            <div class="d-flex align-items-center flex-start">
+                <label for="status">Ativo:</label>
+                <input type="checkbox" id="status" name="status" formControlName="status">
+            </div>
+        </form>
+    </section>
+
+    <!-- editar -->
+    <section *ngIf="title === 'Editar Contato'">
+        <form class="mb-3 d-flex flex-column" [formGroup]="editContactForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="mb-2">
+                <mat-label>Nome:</mat-label>
+                <input matInput placeholder="Exemplo" formControlName="name" required>
+                <mat-error *ngIf="createContactForm.get('name')?.invalid">
+                    {{getErrorMessage('name')}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="mb-2">
+                <mat-label>Email:</mat-label>
+                <input matInput placeholder="nome@examplo.com" formControlName="email" required>
+                <mat-error *ngIf="createContactForm.get('email')?.invalid">
+                    {{getErrorMessage('email')}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="mb-2">
+                <mat-label>Celular:</mat-label>
+                <input matInput placeholder="81 99999-9999" formControlName="cell" required>
+                <mat-error *ngIf="createContactForm.get('cell')?.invalid">
+                    {{getErrorMessage('cell')}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="mb-2">
+                <mat-label>Telefone:</mat-label>
+                <input matInput placeholder="81 99999-9999" formControlName="telephone" required>
+                <mat-error *ngIf="createContactForm.get('telephone')?.invalid">
+                    {{getErrorMessage('telephone')}}
+                </mat-error>
+            </mat-form-field>
+    
+
+            <div class="d-flex flex-column">
+                <div class="checkboxs">
+                    <label for="favorite">Favorito :</label>
+                    <input type="checkbox" id="favorite" name="favorite" formControlName="favorite">
+                </div>
+                <div class="checkboxs">
+                    <label for="status">Status :</label>
+                    <input type="checkbox" id="status" name="status" formControlName="status">
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- detalhes -->
+    <section *ngIf="title === 'Detalhes do Contato'" class="information">
+        <p *ngFor="let item of contact | keyvalue">
+            {{ item.key }}: {{ item.value }}
+        </p>
+    </section>
+
+    <!-- desativar -->
+    <section *ngIf="purpose === 'Status'">
+        <h3>
+            Você tem certeza que deseja {{action}} o contato <strong>{{contact.contactPhone}}</strong>, de <strong>{{contact.contactName}}</strong> ?
+        </h3>
+    </section>
+    
+    <span *ngIf="invalidForm" class="alert" role="alert">
+        Formulário inválido, verifique os campos do formulário.
+    </span>
+    
+</div>
+<div class="modal-footer" *ngIf="title !== 'Detalhes do Contato'">
+
+    <div *ngIf="purpose === 'Status'">
+        <button type="button" class="btn btn-danger action" (click)="inactiveContact(contact)">
+            {{action}}
+        </button>
+    </div>
+
+    <button type="submit" class="btn btn-outline-dark"
+        (click)="onSubmit()"
+        *ngIf="purpose !== 'Status'">
+        Salvar
+    </button>      
+    
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">
+        Cancelar
+    </button>
+</div>

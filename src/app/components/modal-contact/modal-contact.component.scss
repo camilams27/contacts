@@ -1,0 +1,46 @@
+.modal-header {
+    .atention {
+        color: rgb(179, 41, 41);
+    }
+}
+
+.modal-body {
+
+    span {
+        color: rgb(139, 27, 27);
+    }
+
+    .information {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .5rem;
+    }
+
+    .gap {
+        width: 100%;
+        gap: 2em;
+    }
+    
+    mat-label {
+        color: rgb(63, 63, 63);
+    }
+
+    input {
+        outline: none;
+        border: none;
+        border-bottom: 1px solid black;
+        padding: .5em;
+        background-color: rgba(228, 228, 228, 0.568);
+        width: 98%;
+    }
+
+    ::placeholder {
+        color: rgb(165, 165, 165);
+    }
+}
+
+.modal-footer {
+    .action::first-letter {
+        text-transform: uppercase;
+    }
+}
